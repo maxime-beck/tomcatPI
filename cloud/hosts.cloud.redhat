@@ -12,10 +12,16 @@ bela1.gva.redhat.com
 
 [nodes]
 # node.example.com openshift_node_group_name="node-config-infra"
-bela2.gva.redhat.com openshift_node_group_name="node-config-compute"
-bela3.gva.redhat.com openshift_node_group_name="node-config-compute"
-bela4.gva.redhat.com openshift_node_group_name="node-config-infra"
-bela1.gva.redhat.com openshift_node_group_name="node-config-master"
+bela2.gva.redhat.com openshift_node_group_name='node-config-compute'
+bela3.gva.redhat.com openshift_node_group_name='node-config-compute'
+bela4.gva.redhat.com openshift_node_group_name='node-config-infra'
+bela1.gva.redhat.com openshift_node_group_name='node-config-master'
+
+##[glusterfs]
+#bela1.gva.redhat.com
+#bela2.gva.redhat.com
+#bela3.gva.redhat.com
+#bela4.gva.redhat.com
 
 [nfs]
 bela1.gva.redhat.com
@@ -28,6 +34,7 @@ etcd
 nfs
 
 [OSEv3:vars]
+openshift_additional_registry_credentials=[{'host':'registry.connect.redhat.com','user':'<USER>','password':'<PASSWORD>','test_image':'mongodb/enterprise-operator:0.3.2'}]
 openshift_disable_check=memory_availability
 ###############################################################################
 # Common/ Required configuration variables follow                             #
@@ -60,6 +67,10 @@ openshift_deployment_type=origin
 
 #Set cluster_hostname to point at your load balancer
 #openshift_master_cluster_hostname=ose3-lb.test.example.com
+
+# Install Operator Lifecycle Manager
+operator_lifecycle_manager_remove=false
+operator_lifecycle_manager_install=true
 
 
 
